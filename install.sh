@@ -2,14 +2,9 @@
 
 # First uninstall any unnecessary packages and ensure that aptitude is installed.
 apt-get update
-apt-get install python-software-properties
-add-apt-repository ppa:ondrej/php5
-apt-get update
 apt-get -y install aptitude
 aptitude -y install nano
 aptitude -y install lsb-release
-
-
 service apache2 stop
 service sendmail stop
 service bind9 stop

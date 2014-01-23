@@ -60,7 +60,6 @@ function install_webserver {
 
     cat ./config/fastcgi.conf > /etc/apache2/mods-available/fastcgi.conf
 
-    # Create the virtual directory for the external server
     mkdir -p /srv/www/fcgi-bin.d
 
 } # End function install_webserver
@@ -68,7 +67,9 @@ function install_webserver {
 
 function install_php {
 
-    # Install PHP packages and extensions specified in options.conf
+    apt-get install python-software-properties
+    add-apt-repository ppa:ondrej/php5
+
     aptitude -y install $PHP_BASE
     aptitude -y install $PHP_EXTRAS
 
@@ -225,7 +226,9 @@ function install_postfix {
 } # End function install_postfix
 
 function restart_webserver {
+	
     apache2ctl graceful
+
 } # End function restart_webserver
 
 
@@ -255,7 +258,7 @@ if [ ! -n "$1" ]; then
     echo -n "$0"
     echo -ne "\033[36m optimize\033[0m"
     echo     " - Optimizes webserver.conf, php.ini, AWStats & logrotate. Also generates self signed SSL certs."
-    
+
     exit
 fi
 # End Show Menu
