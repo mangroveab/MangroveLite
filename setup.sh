@@ -67,8 +67,9 @@ function install_webserver {
 
 function install_php {
 
-    apt-get install python-software-properties
-    add-apt-repository ppa:ondrej/php5
+    apt-get install -y python-software-properties
+    add-apt-repository -y ppa:ondrej/php5
+    apt-get update
 
     aptitude -y install $PHP_BASE
     aptitude -y install $PHP_EXTRAS
@@ -226,7 +227,7 @@ function install_postfix {
 } # End function install_postfix
 
 function restart_webserver {
-	
+
     apache2ctl graceful
 
 } # End function restart_webserver
